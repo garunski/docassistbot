@@ -1,0 +1,46 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    Layout = "";
+}
+<!doctype html>
+<html lang="en">
+<head>
+    <title>My First Admin</title>
+    <link href="~/lib/ng-admin/build/ng-admin.min.css" rel="stylesheet" />
+</head>
+<body ng-app="myApp">
+    <div ui-view></div>
+    <script src="~/lib/ng-admin/build/ng-admin.min.js"></script>
+    <script type="text/javascript">
+    var myApp = angular.module('myApp', ['ng-admin']);
+    myApp.config(['NgAdminConfigurationProvider', function(NgAdminConfigurationProvider) {
+        var nga = NgAdminConfigurationProvider;
+        // create an admin application
+        var admin = nga.application('Documentation Assistant Bot Admin').baseApiUrl('/api/');;
+        
+        var lodash = nga.entity('lodashes');
+        lodash.listView().fields([
+          nga.field('Id'),
+          nga.field('FunctionName').isDetailLink(true),
+          nga.field('ClassName')
+        ]);
+
+        lodash.showView().fields([
+          nga.field('FunctionName').isDetailLink(true),
+          nga.field('ClassName'),
+          nga.field('Example'),
+          nga.field('Documentation'),
+          nga.field('Arguments'),
+          nga.field('Returns'),
+        ]);
+        lodash.creationView().fields(lodash.showView().fields());
+        lodash.editionView().fields(lodash.showView().fields());
+
+        lodash.identifier(nga.field('Id'));
+        admin.addEntity(lodash);
+
+        nga.configure(admin);
+    }]);
+    </script>
+</body>
+</html>
