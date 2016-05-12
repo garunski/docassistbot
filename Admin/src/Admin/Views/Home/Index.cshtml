@@ -28,10 +28,10 @@
         lodash.showView().fields([
           nga.field('FunctionName').isDetailLink(true),
           nga.field('ClassName'),
-          nga.field('Example'),
-          nga.field('Documentation'),
-          nga.field('Arguments'),
-          nga.field('Returns'),
+          nga.field('Example', 'text'),
+          nga.field('Documentation', 'text'),
+          nga.field('Arguments', 'text'),
+          nga.field('Returns', 'text'),
         ]);
         lodash.creationView().fields(lodash.showView().fields());
         lodash.editionView().fields(lodash.showView().fields());

@@ -234,3 +234,4 @@ _Pvt_Extensions
 
 # FAKE - F# Make
 .fake/
+Admin/src/Admin/Properties/PublishProfiles/docassistbotadmin - Web Deploy-publish.ps1
